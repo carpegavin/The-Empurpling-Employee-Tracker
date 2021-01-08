@@ -7,7 +7,8 @@ CREATE TABLE employee (
   id int PRIMARY KEY,
   first_name varchar(30) NOT NULL,
   last_name varchar(30) NOT NULL,
-  role_id int NOT NULL
+  role_id int NOT NULL,
+  manager_id int NOT NULL
 );
 
 CREATE TABLE role (
@@ -18,6 +19,11 @@ CREATE TABLE role (
 );
 
 CREATE TABLE department (
+  id int PRIMARY KEY,
+  name varchar(30) NOT NULL
+);
+
+CREATE TABLE manager (
   id int PRIMARY KEY,
   name varchar(30) NOT NULL
 );
