@@ -1,11 +1,10 @@
 const mysql = require('mysql2');
 
-const [ALL_SONGS_BY_ARTIST, ARTISTS_WITH_TWO_OR_MORE_SONGS, 
-       SONGS_BY_RANGE, SPECIFIC_SONG, TOP_SONG_AND_ALBUM_BY_ARTIST] = require('./lib/const');
+// const {} = require('./lib/const');
 
-const {promptDepartment, promptArtistName,promptRange,promptSong} = require('./lib/prompts');
+const {promptDepartment, promptRole, promptFirstName, promptLastName, promptSalary, promptManager} = require('./lib/prompts');
 
-const  {artistSearch, multiSearch, rangeSearch, songSearch, songAndAlbumSearch} = require('./lib/queries');
+const {departmentData, roleData, firstNameData, lastNameData, salaryData, managerData} = require('./lib/queries');
 
 const connection = mysql.createConnection({
     host: 'localhost',
@@ -18,39 +17,60 @@ const connection = mysql.createConnection({
 connection.connect(async (err) => {
     if (err) throw err;
     console.log('connected as id ' + connection.threadId);
-    await runSearch();
-    connection.end();
+    await 
+    promptDepartment(),
+    await
+    promptRole(),
+    await
+    promptFirstName(),
+    await
+    promptLastName(),
+    await
+    promptSalary();
+    await
+    promptManager();
+    console.table();
+    // connection.end();
 });
 
-async function runSearch() {
+module.exports = {
+departmentData,
+roleData,
+firstNameData,
+lastNameData,
+salaryData,
+managerData
+};
 
-    let answer, artist, range;
+// async function runSearch() {
 
-    answer = await promptDepartment();
+//     let answer, artist, range;
 
-    switch (answer.name) {
-        case ALL_SONGS_BY_ARTIST:
-            artist = await promptArtistName();
-            artistSearch(connection, artist.name);
-            break;
+//     answer = await promptDepartment();
 
-        case ARTISTS_WITH_TWO_OR_MORE_SONGS:
-            multiSearch(connection);
-            break;
+//     switch (answer.name) {
+//         case ALL_SONGS_BY_ARTIST:
+//             artist = await promptArtistName();
+//             artistSearch(connection, artist.name);
+//             break;
 
-        case SONGS_BY_RANGE:
-            range = await promptRange();
-            rangeSearch(connection, range.start, range.end);
-            break;
+//         case ARTISTS_WITH_TWO_OR_MORE_SONGS:
+//             multiSearch(connection);
+//             break;
 
-        case SPECIFIC_SONG:
-            song = await promptSong();
-            songSearch(connection,song.title);
-            break;
+//         case SONGS_BY_RANGE:
+//             range = await promptRange();
+//             rangeSearch(connection, range.start, range.end);
+//             break;
 
-        case TOP_SONG_AND_ALBUM_BY_ARTIST:
-            artist = await promptArtistName();
-            songAndAlbumSearch(connection, artist.name);
-            break;
-    };
-}
+//         case SPECIFIC_SONG:
+//             song = await promptSong();
+//             songSearch(connection,song.title);
+//             break;
+
+//         case TOP_SONG_AND_ALBUM_BY_ARTIST:
+//             artist = await promptArtistName();
+//             songAndAlbumSearch(connection, artist.name);
+//             break;
+//     };
+// }
