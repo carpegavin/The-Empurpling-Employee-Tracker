@@ -1,8 +1,8 @@
 const mysql = require('mysql2');
 
-const {mainMenu, promptDepartment, promptRole, promptFirstName, promptLastName, promptSalary, promptManager} = require('./lib/prompts');
+const {mainMenu, promptDepartment, promptRole, promptName, promptManager} = require('./lib/prompts');
 
-const {departmentData, roleData, employeeData, newDepartment, newRole, newFirstName, newLastName, newSalary, newManager} = require('./lib/queries');
+const {departmentData, roleData, employeeData, newDepartment, newRole, newName, newSalary, newManager} = require('./lib/queries');
 
 const connection = mysql.createConnection({
     host: 'localhost',
@@ -16,7 +16,6 @@ connection.connect(async (err) => {
     if (err) throw err;
     console.log('connected as id ' + connection.threadId);
     init();
-    
 });
 
 async function init() {
@@ -36,19 +35,14 @@ async function init() {
         newDepartment(connection, newDept.department)
         init();
     }else if(response.mainChoice == "Add roles"){
-        let newRole = await promptRole()
-        console.log(newRoleName.role);
-        newRole(connection, newRoleName.role)
+        let newRoleName = await promptRole()
+        // console.log(newRoleName);
+        newRole(connection, newRoleName)
         init();
-    }else if(response.mainChoice == "Add employee first name"){
-        let newFirst = await promptFirstName()
+    }else if(response.mainChoice == "Add employee name"){
+        let newFirst = await promptName()
         console.log(newFirst.employee);
-        newFirstName(connection, newFirst.employee)
-        init();
-    }else if(response.mainChoice == "Add employee last name"){
-        let newLast = await promptLastName()
-        console.log(newLast.employee);
-        newLastName(connection, newLast.employee)
+        newName(connection, newFirst.employee)
         init();
     }else if(response.mainChoice == "Add salary"){
         let newSal = await promptSalary()
