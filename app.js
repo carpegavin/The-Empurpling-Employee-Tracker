@@ -37,9 +37,9 @@ async function init() {
         init();
     }else if(response.mainChoice == "Add roles"){
         let newRole = await promptRole()
-        console.log(newRoles.role);
-        newRole(connection, newRoles.role)
-         init();
+        console.log(newRoleName.role);
+        newRole(connection, newRoleName.role)
+        init();
     }else if(response.mainChoice == "Add employee first name"){
         let newFirst = await promptFirstName()
         console.log(newFirst.employee);
