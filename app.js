@@ -1,10 +1,8 @@
 const mysql = require('mysql2');
 
-// const {} = require('./lib/const');
-
 const {mainMenu, promptDepartment, promptRole, promptFirstName, promptLastName, promptSalary, promptManager} = require('./lib/prompts');
 
-const {departmentData, roleData, newDepartment, firstNameData, lastNameData, salaryData, managerData} = require('./lib/queries');
+const {departmentData, roleData, employeeData, newDepartment, newRole, newFirstName, newLastName, newSalary, newManager} = require('./lib/queries');
 
 const connection = mysql.createConnection({
     host: 'localhost',
@@ -17,44 +15,50 @@ const connection = mysql.createConnection({
 connection.connect(async (err) => {
     if (err) throw err;
     console.log('connected as id ' + connection.threadId);
-    // await 
-    // promptDepartment(),
-    // await
-    // promptRole(),
-    // await
-    // promptFirstName(),
-    // await
-    // promptLastName(),
-    // await
-    // promptSalary();
-    // await
-    // promptManager();
-    // console.table();
     init();
-    // connection.end();
+    
 });
-
-// module.exports = {
-// departmentData,
-// roleData,
-// firstNameData,
-// lastNameData,
-// salaryData,
-// managerData
-// };
 
 async function init() {
     let response = await mainMenu()
     if(response.mainChoice == "View Departments"){
         departmentData(connection)
-        init();
+         init();
     }else if(response.mainChoice == "View Roles") {
         roleData(connection)
-        init();
+         init();
+    }else if(response.mainChoice == "View Employees") {
+        employeeData(connection)
+         init();
     }else if (response.mainChoice == "Add Departments"){
         let newDept = await promptDepartment()
         console.log(newDept.department);
         newDepartment(connection, newDept.department)
+        init();
+    }else if (response.mainChoice == "Add Roles"){
+        let newRole = await promptRole()
+        console.log(newRoles.role);
+        newRole(connection, newRoles.role)
+         init();
+    }else if (response.mainChoice == "Add employee first name"){
+        let newFirst = await promptFirstName()
+        console.log(newFirst.employee);
+        newFirstName(connection, newFirst.employee)
+        init();
+    }else if (response.mainChoice == "Add employee last name"){
+        let newLast = await promptLastName()
+        console.log(newLast.employee);
+        newLastName(connection, newLast.employee)
+        init();
+    }else if (response.mainChoice == "Add employee salary"){
+        let newSal = await promptSalary()
+        console.log(newSal.employee);
+        newSalary(connection, newSal.employee)
+        init();
+    }else if (response.mainChoice == "Add Manager"){
+        let newMan = await promptManager()
+        console.log(newMan.manager);
+        newManager(connection, newMan.manager)
         init();
     }
 }
