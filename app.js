@@ -44,11 +44,6 @@ async function init() {
         console.log(newFirst.employee);
         newName(connection, newFirst.employee)
         init();
-    }else if(response.mainChoice == "Add salary"){
-        let newSal = await promptSalary()
-        console.log(newSal.employee);
-        newSalary(connection, newSal.employee)
-        init();
     }else if(response.mainChoice == "Add Manager"){
         let newMan = await promptManager()
         console.log(newMan.manager);
