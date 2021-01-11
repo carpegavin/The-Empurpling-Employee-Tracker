@@ -30,6 +30,7 @@ CREATE TABLE employee (
 
 
 CREATE TABLE manager (
-  id int PRIMARY KEY,
-  name varchar(30) NOT NULL
+  id int NOT NULL AUTO_INCREMENT,
+  name varchar(30) NOT NULL,
+  PRIMARY KEY (id)
 );

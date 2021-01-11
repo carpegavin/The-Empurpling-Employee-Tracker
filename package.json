@@ -1,0 +1,28 @@
+{
+  "name": "The-Empurpling-Employee-Tracker",
+  "version": "1.0.0",
+  "description": "## Description",
+  "main": "app.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "inquirer": "^7.3.3",
+    "mysql2": "^2.2.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carpegavin/The-Empurpling-Employee-Tracker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/carpegavin/The-Empurpling-Employee-Tracker/issues"
+  },
+  "homepage": "https://github.com/carpegavin/The-Empurpling-Employee-Tracker#readme"
+}
