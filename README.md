@@ -22,7 +22,6 @@
 
 ![screengrab](https://github.com/carpegavin/The-Empurpling-Employee-Tracker/blob/main/assets/img/gif.gif?raw=true)
 
-Contributor: Calvin Carter
 
 ### Questions?
 Please don't hesitate to contact me:
@@ -30,3 +29,5 @@ Please don't hesitate to contact me:
 ### carpe.gavin@gmail.com
 
 © copyright 2020 Gavin H Phill
+
+Contributor(s): Calvin Carter
