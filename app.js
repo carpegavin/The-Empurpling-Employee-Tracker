@@ -34,12 +34,11 @@ async function init() {
         console.log(newDept.department);
         await newDepartment(connection, newDept.department)
     }
-    else if(response.mainChoice == "Add roles"){
+    else if(response.mainChoice === "Add roles"){
         let newRoleName = await getDepartment(connection);
         let role = await promptRole(newRoleName);
-        console.log(role);
-        let {id: departmentId} = newRoleName.find(department => department.name === role.departmentName);
-        await newRole(connection, role.title, salary, departmentId);
+        let {id: departmentId} = newRoleName.find(department => department.name === role.department);
+        await newRole(connection, role.title, role.salary, departmentId);
     }
     else if(response.mainChoice == "Add employee name") {
         let roles = await getRoles(connection);

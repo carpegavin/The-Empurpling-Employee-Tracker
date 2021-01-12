@@ -12,7 +12,7 @@
 ### Created with Node, Inquirer, and MySql. 
 <br>
 
-### Please enjoy a proof of completion video [HERE]()
+### Please enjoy a proof of completion video [HERE](https://drive.google.com/file/d/1OU_hknbYmxYBq7tgpk3UitoeI3yi7wAP/view)
 <br>
 
 ### GNU License
