@@ -2,7 +2,7 @@ const mysql = require('mysql2');
 
 const {mainMenu, promptDepartment, promptRole, promptName, promptManager} = require('./lib/prompts');
 
-const {departmentData, roleData, employeeData, newDepartment, newRole, newEmployee, newManager, getRoles, getManagers} = require('./lib/queries');
+const {departmentData, roleData, employeeData, newDepartment, newRole, newEmployee, newManager, getDepartment, getRoles, getManagers} = require('./lib/queries');
 
 const connection = mysql.createConnection({
     host: 'localhost',
@@ -35,10 +35,10 @@ async function init() {
         await newDepartment(connection, newDept.department)
     }
     else if(response.mainChoice == "Add roles"){
-        let newRoleName = await departmentData(connection);
+        let newRoleName = await getDepartment(connection);
         let role = await promptRole(newRoleName);
         console.log(role);
-        let {id: departmentId} = newRoleName.find(department => department.name === answer.departmentName);
+        let {id: departmentId} = newRoleName.find(department => department.name === role.departmentName);
         await newRole(connection, role.title, salary, departmentId);
     }
     else if(response.mainChoice == "Add employee name") {
