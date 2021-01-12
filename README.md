@@ -20,7 +20,7 @@
 
 <br>
 
-![screengrab]()
+![screengrab](https://github.com/carpegavin/The-Empurpling-Employee-Tracker/blob/main/assets/img/gif.gif?raw=true)
 
 Contributor: Calvin Carter
 
