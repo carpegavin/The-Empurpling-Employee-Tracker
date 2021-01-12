@@ -22,33 +22,43 @@ async function init() {
     let response = await mainMenu();
     if(response.mainChoice == "View Departments"){
         await departmentData(connection)
-    }else if(response.mainChoice == "View Roles") {
+    }
+    else if(response.mainChoice == "View Roles") {
         await roleData(connection)
-    }else if(response.mainChoice == "View Employees") {
+    }
+    else if(response.mainChoice == "View Employees") {
         await employeeData(connection)
-    }else if(response.mainChoice == "Add Departments"){
+    }
+    else if(response.mainChoice == "Add Departments"){
         let newDept = await promptDepartment()
         console.log(newDept.department);
         await newDepartment(connection, newDept.department)
-    }else if(response.mainChoice == "Add roles"){
-        let newRoleName = await promptRole()
-        // console.log(newRoleName);
-        await newRole(connection, newRoleName)
-    }else if(response.mainChoice == "Add employee name") {
+    }
+    else if(response.mainChoice == "Add roles"){
+        let newRoleName = await departmentData(connection);
+        let role = await promptRole(newRoleName);
+        console.log(role);
+        let {id: departmentId} = newRoleName.find(department => department.name === answer.departmentName);
+        await newRole(connection, role.title, salary, departmentId);
+    }
+    else if(response.mainChoice == "Add employee name") {
         let roles = await getRoles(connection);
         let managers = await getManagers(connection);
         let employee = await promptName(roles, managers);
         console.log(employee);
         let {id: roleID} = roles.find(role => role.title === employee.roleTitle);
         let {id: managerID} = managers.find(manager => manager.name === employee.managerName);
+        
 
         await newEmployee(connection, employee.firstName, employee.lastName, roleID, managerID);
 
-    } else if(response.mainChoice == "Add Manager"){
+    } 
+    else if(response.mainChoice == "Add Manager"){
         let newMan = await promptManager()
         console.log(newMan.manager);
         await newManager(connection, newMan.manager)
-    } else {
+    } 
+    else {
         return connection.end();
     }
 
